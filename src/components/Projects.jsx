@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import Cooktrition from '../assets/images/cooktrition.png';
 import GoldenHaven from '../assets/images/goldenHaven.png';
-import InspectorBill from '../assets/images/inspectorBill.png';
+import InspectorBill from '../assets/images/inspectorbill.png';
 import InspectorBillR from '../assets/images/rasp.jpg';
 
 const Projects = () => {
-  const [expandedProject, setExpandedProject] = useState(null);
+  const [expandedProject, setExpandedProject] = useStabte(null);
 
   const projects = [
     {
