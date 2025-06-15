@@ -1,37 +1,82 @@
-import React from 'react'
+import React from 'react';
+
+const skillData = [
+  {
+    title: 'Programming Languages',
+    icon: (
+      <svg className="w-7 h-7 text-yellow-500 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16 18v-1a4 4 0 00-4-4H8a4 4 0 00-4 4v1" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+    ),
+    tags: ['Java', 'Python', 'JavaScript', 'PHP', 'C', 'C#', 'SQL'],
+  },
+  {
+    title: 'Frameworks & Libraries',
+    icon: (
+      <svg className="w-7 h-7 text-yellow-500 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M3 9h18M9 21V9" />
+      </svg>
+    ),
+    tags: ['React', 'React Native', 'Node.js', 'Express', 'CodeIgniter', 'Tailwind CSS', 'Bootstrap', 'Vite'],
+  },
+  {
+    title: 'Tools & Platforms',
+    icon: (
+      <svg className="w-7 h-7 text-yellow-500 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="12" rx="10" ry="6" />
+        <path d="M2 12c0 3.314 4.477 6 10 6s10-2.686 10-6" />
+        <path d="M2 12V8c0-3.314 4.477-6 10-6s10 2.686 10 6v4" />
+      </svg>
+    ),
+    tags: ['Git', 'Firebase', 'Figma', 'Raspberry Pi 4'],
+  },
+  {
+    title: 'Machine Learning & AI',
+    icon: (
+      <svg className="w-7 h-7 text-yellow-500 mr-2" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <path d="M12 8v4l3 3" />
+        <circle cx="12" cy="12" r="10" />
+      </svg>
+    ),
+    tags: ['YOLOv8', 'OpenCV', 'TensorFlow (basic)', 'scikit-learn (basic)', 'pyttsx3', 'LabelImg'],
+  },
+];
 
 const Skills = () => {
-  const skills = [
-    { name: 'JavaScript', level: 'Advanced' },
-    { name: 'React', level: 'Advanced' },
-    { name: 'Node.js', level: 'Intermediate' },
-    { name: 'Python', level: 'Advanced' },
-    { name: 'SQL', level: 'Intermediate' },
-    { name: 'Git', level: 'Advanced' },
-  ]
-
   return (
-    <section id="skills" className="py-20 bg-yellow-50 dark:bg-gray-900">
+    <section id="skills" className="py-20 bg-[#f5f8ff] dark:bg-gray-900">
       <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12 bg-gradient-to-r from-yellow-600 to-yellow-800 dark:from-yellow-400 dark:to-yellow-600 bg-clip-text text-transparent">
-          Skills
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills.map((skill) => (
+        <h2 className="text-4xl font-extrabold text-center mb-2 text-yellow-600">Technical Skills</h2>
+        <div className="w-28 h-1 bg-gradient-to-r from-yellow-500 to-yellow-300 mx-auto rounded-full mb-12"></div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {skillData.map((group) => (
             <div
-              key={skill.name}
-              className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-yellow-200/20 dark:border-gray-700/20 transform transition-all duration-300 hover:scale-105"
+              key={group.title}
+              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-yellow-100/80 dark:border-gray-700/20 transition transform hover:scale-[1.02] hover:shadow-xl"
             >
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                {skill.name}
-              </h3>
-              <p className="text-yellow-600 dark:text-yellow-400">{skill.level}</p>
+              <div className="flex items-center mb-4">
+                {group.icon}
+                <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">{group.title}</h3>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {group.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-1 bg-yellow-50 text-yellow-700 dark:bg-yellow-900/20 dark:text-yellow-300 rounded-full text-sm font-medium shadow-sm hover:scale-105 transition"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Skills 
+export default Skills;

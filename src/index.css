@@ -56,6 +56,9 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%
   }
+  .theme {
+    --animate-pulse: pulse var(--duration) ease-out infinite
+  }
 }
 
 @layer base {
@@ -64,5 +67,16 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@theme inline {
+  @keyframes pulse {
+  0%, 100% {
+    boxShadow: 0 0 0 0 var(--pulse-color);
+    }
+  50% {
+    boxShadow: 0 0 0 8px var(--pulse-color);
+    }
   }
 }
