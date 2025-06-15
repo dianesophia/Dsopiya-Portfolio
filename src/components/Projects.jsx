@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Cooktrition from '../assets/images/cooktrition.png';
-import GoldenHaven from '../assets/images/goldenhaven.png';
+import GoldenHaven from '../assets/images/goldenHaven.png';
 import InspectorBill from '../assets/images/inspectorBill.png';
 import InspectorBillR from '../assets/images/rasp.jpg';
 
