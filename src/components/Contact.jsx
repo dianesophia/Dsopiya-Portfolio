@@ -1,24 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    from_name: '',
+    from_email: '',
+    message: '',
   });
 
   const [focusedField, setFocusedField] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log(formData);
+
+    emailjs
+      .send(
+        'service_xvqia81',         // Your EmailJS service ID
+        'template_vh01sms',        // Your EmailJS template ID
+        formData,
+        'a5qj9L1MHqBixsbuL'        // Your EmailJS public key
+      )
+      .then(() => {
+        alert('Message sent successfully!');
+        setFormData({ from_name: '', from_email: '', message: '' });
+      })
+      .catch((error) => {
+        console.error('Email send error:', error);
+        alert('Failed to send message. Please try again.');
+      });
   };
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
 
@@ -101,54 +116,39 @@ const Contact = () => {
           <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-yellow-200/20 dark:border-gray-700/20">
             <div className="space-y-6">
               <div className="relative">
-                <label
-                  htmlFor="name"
-                  className={`block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-all duration-300 ${
-                    focusedField === 'name' ? 'text-yellow-600 dark:text-yellow-400' : ''
-                  }`}
-                >
+                <label htmlFor="from_name" className={`block text-sm font-medium mb-2 ${focusedField === 'name' ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-700 dark:text-gray-300'}`}>
                   Name
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  value={formData.name}
+                  id="from_name"
+                  value={formData.from_name}
                   onChange={handleChange}
                   onFocus={() => setFocusedField('name')}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-500"
                   placeholder="Your name"
                 />
               </div>
 
               <div className="relative">
-                <label
-                  htmlFor="email"
-                  className={`block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-all duration-300 ${
-                    focusedField === 'email' ? 'text-yellow-600 dark:text-yellow-400' : ''
-                  }`}
-                >
+                <label htmlFor="from_email" className={`block text-sm font-medium mb-2 ${focusedField === 'email' ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-700 dark:text-gray-300'}`}>
                   Email
                 </label>
                 <input
                   type="email"
-                  id="email"
-                  value={formData.email}
+                  id="from_email"
+                  value={formData.from_email}
                   onChange={handleChange}
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-500"
                   placeholder="Your email"
                 />
               </div>
 
               <div className="relative">
-                <label
-                  htmlFor="message"
-                  className={`block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 transition-all duration-300 ${
-                    focusedField === 'message' ? 'text-yellow-600 dark:text-yellow-400' : ''
-                  }`}
-                >
+                <label htmlFor="message" className={`block text-sm font-medium mb-2 ${focusedField === 'message' ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-700 dark:text-gray-300'}`}>
                   Message
                 </label>
                 <textarea
@@ -158,7 +158,7 @@ const Contact = () => {
                   onFocus={() => setFocusedField('message')}
                   onBlur={() => setFocusedField(null)}
                   rows="4"
-                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all duration-300 resize-none"
+                  className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-500 resize-none"
                   placeholder="Your message"
                 ></textarea>
               </div>
@@ -174,7 +174,7 @@ const Contact = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Contact 
+export default Contact;

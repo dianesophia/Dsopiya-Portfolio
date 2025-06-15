@@ -136,12 +136,6 @@ const Projects = () => {
 
                 <div className="flex gap-4 justify-center mt-auto">
                   <a
-                    href={project.demoLink}
-                    className="px-6 py-2 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white font-semibold hover:from-yellow-600 hover:to-yellow-700 transition duration-300 transform hover:scale-105 shadow-md"
-                  >
-                    Live Demo
-                  </a>
-                  <a
                     href={project.sourceLink}
                     className="px-6 py-2 rounded-full border-2 border-yellow-500 text-yellow-600 dark:text-yellow-400 font-semibold hover:bg-yellow-500 hover:text-white transition duration-300 transform hover:scale-105"
                   >

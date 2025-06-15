@@ -38,7 +38,7 @@ const About = () => {
   Lately, I've been diving deeper into modern tools and frameworks, experimenting with web technologies, and building small projects that challenge me to think critically and work smarter.
 </p>
 <p className="text-gray-600 text-lg mb-4">
-  I’m also drawn to artificial intelligence and how it can be used to create helpful, human-centered solutions — especially when combined with simple, accessible design.
+  I'm also drawn to artificial intelligence and how it can be used to create helpful, human-centered solutions — especially when combined with simple, accessible design.
 </p>
 
 
@@ -52,10 +52,17 @@ const About = () => {
                 <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.966 0-1.75-.79-1.75-1.76s.784-1.76 1.75-1.76 1.75.79 1.75 1.76-.784 1.76-1.75 1.76zm13.5 11.28h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.89v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.61z" /></svg>
                 LinkedIn
               </a>
-              <a href="#" className="flex items-center text-yellow-600 hover:text-yellow-700 text-lg font-medium">
-                <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-7V3.5L18.5 9H13z" /></svg>
+              <a
+                href="/Fuentes - Resume.pdf"
+                download
+                className="flex items-center text-yellow-600 hover:text-yellow-700 text-lg font-medium"
+              >
+                <svg className="w-5 h-5 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-7V3.5L18.5 9H13z" />
+                </svg>
                 Resume
               </a>
+
             </div>
           </div>
         </div>
