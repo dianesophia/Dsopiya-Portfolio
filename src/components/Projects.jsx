@@ -6,7 +6,7 @@ import InspectorBill from '../assets/images/inspectorbill.png';
 import InspectorBillR from '../assets/images/rasp.jpg';
 
 const Projects = () => {
-  const [expandedProject, setExpandedProject] = useStabte(null);
+  const [expandedProject, setExpandedProject] = useState(null);
 
   const projects = [
     {
