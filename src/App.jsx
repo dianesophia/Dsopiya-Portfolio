@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
+import Home from './components/Home'
 import About from './components/About'
 import Experience from './components/Experience'
 import Skills from './components/Skills'
@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="min-h-screen bg-yellow-50 dark:bg-gray-900 transition-colors duration-300">
       <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-      <Hero />
+      <Home />
       <About isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
       <Experience />
       <Skills />

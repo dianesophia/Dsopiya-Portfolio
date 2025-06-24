@@ -61,7 +61,7 @@ const Card = ({ title, subtitle, date, description, tags, subtitleColor }) => (
 const Experience = () => {
   return (
     <section id="experience" className="py-20 bg-[#f5f8ff] dark:bg-gray-900">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-20">
         <h2 className="text-4xl font-extrabold tracking-tight text-center mb-12 text-gray-900 dark:text-white">Education & Experience</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {/* Education Column */}

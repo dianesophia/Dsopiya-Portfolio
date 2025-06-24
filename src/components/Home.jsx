@@ -29,7 +29,7 @@
 
     return (
       <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-6 py-20 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="container mx-auto px-20 py-20 relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
           {/* Left Side: Text Content */}
           <div className="w-full md:w-1/2 flex flex-col items-start text-left">
             <span className="mb-4 px-4 py-1 bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-400 rounded-full text-xs font-semibold">Available for hire</span>

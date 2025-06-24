@@ -9,26 +9,30 @@ const Contact = () => {
   });
 
   const [focusedField, setFocusedField] = useState(null);
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    emailjs
-      .send(
-        'service_xvqia81',         // Your EmailJS service ID
-        'template_vh01sms',        // Your EmailJS template ID
-        formData,
-        'a5qj9L1MHqBixsbuL'        // Your EmailJS public key
-      )
-      .then(() => {
+  
+    try {
+      const response = await fetch('http://localhost:5000/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (response.ok) {
         alert('Message sent successfully!');
         setFormData({ from_name: '', from_email: '', message: '' });
-      })
-      .catch((error) => {
-        console.error('Email send error:', error);
+      } else {
         alert('Failed to send message. Please try again.');
-      });
+      }
+    } catch (error) {
+      console.error('Resend send error:', error);
+      alert('Failed to send message. Please try again.');
+    }
   };
+  
 
   const handleChange = (e) => {
     setFormData({
