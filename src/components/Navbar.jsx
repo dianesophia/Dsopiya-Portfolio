@@ -30,7 +30,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
         </div>
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center space-x-2">
-          <ThemeToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} small />
+        {/*  <ThemeToggle isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} small />*/}
           <button
             onClick={toggleMobileMenu}
             className="p-2 rounded bg-transparent hover:bg-yellow-100 dark:hover:bg-gray-800 transition-colors duration-200"
