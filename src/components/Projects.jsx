@@ -68,7 +68,10 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-b from-white to-yellow-50 dark:from-gray-900 dark:to-gray-800">
+    <section
+      id="projects"
+      className="py-20 bg-gradient-to-b from-white to-yellow-50 dark:from-gray-900 dark:to-gray-800"
+    >
       <div className="container mx-auto px-6 md:px-16">
         <div className="text-center mb-14">
           <h2 className="text-4xl font-extrabold mb-3 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-700 dark:from-yellow-400 dark:via-yellow-300 dark:to-yellow-500 bg-clip-text text-transparent">
@@ -79,7 +82,7 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div
               key={project.title}
@@ -88,11 +91,15 @@ const Projects = () => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-36 object-cover"
+                className="w-full h-40 object-cover"
               />
-              <div className="p-4 flex flex-col">
-                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{project.title}</h3>
-                <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">{project.description}</p>
+              <div className="py-4 px-6 flex flex-col h-full">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">
+                  {project.title}
+                </h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                  {project.description}
+                </p>
                 <div className="flex flex-wrap gap-2 mb-2">
                   {project.technologies.map((tech) => (
                     <span
