@@ -83,17 +83,17 @@ const Projects = () => {
           {projects.map((project, index) => (
             <div
               key={project.title}
-              className="relative rounded-2xl overflow-hidden bg-white dark:bg-gray-800 shadow-md border-l-4 border-yellow-500 hover:shadow-xl transition"
+              className="relative rounded-xl overflow-hidden bg-white dark:bg-gray-800 shadow-md border-l-4 border-yellow-500 hover:shadow-xl transition"
             >
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-52 object-cover"
+                className="w-full h-36 object-cover"
               />
-              <div className="p-6 flex flex-col">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{project.title}</h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+              <div className="p-4 flex flex-col">
+                <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{project.title}</h3>
+                <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-2">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
@@ -107,7 +107,7 @@ const Projects = () => {
                   onClick={() =>
                     setExpandedProject(expandedProject === index ? null : index)
                   }
-                  className="text-xs font-semibold text-yellow-600 dark:text-yellow-400 mb-4 hover:underline self-start"
+                  className="text-xs font-semibold text-yellow-600 dark:text-yellow-400 mb-2 hover:underline self-start"
                 >
                   {expandedProject === index ? 'Hide Features' : 'Show Features'}
                 </button>
@@ -116,7 +116,7 @@ const Projects = () => {
                     expandedProject === index ? 'max-h-96' : 'max-h-0'
                   }`}
                 >
-                  <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300 mb-4 mt-2">
+                  <ul className="space-y-1 text-xs text-gray-700 dark:text-gray-300 mb-2 mt-1">
                     {project.features.map((feature, i) => (
                       <li key={i} className="flex items-start">
                         <span className="w-1.5 h-1.5 rounded-full bg-yellow-500 mt-2 mr-2 shrink-0"></span>
