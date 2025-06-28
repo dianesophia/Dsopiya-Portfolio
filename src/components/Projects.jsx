@@ -14,7 +14,6 @@ const Projects = () => {
       description: 'A Machine Learning-based model for recognizing Philippine bill denominations.',
       technologies: ['Python', 'Machine Learning', 'Flask', 'OpenCV'],
       image: InspectorBill,
-      demoLink: '#',
       sourceLink: 'https://github.com/dianesophia/Thesis---Inspector-Bill',
       features: [
         'Automatically recognizes Philippine currency through image classification.',
@@ -28,6 +27,7 @@ const Projects = () => {
       description: 'YOLOv8-powered Philippine currency recognition system with Raspberry Pi 4 and audio assistance.',
       technologies: ['Python', 'YOLOv8', 'Raspberry Pi 4', 'React.js', 'Firebase'],
       image: InspectorBillR,
+      demoLink: 'https://inspectorbill.vercel.app/',
       sourceLink: 'https://github.com/dianesophia/InspectorBill---RaspberryPi',
       features: [
         'Detects Philippine currency in real time using YOLOv8.',
@@ -42,7 +42,6 @@ const Projects = () => {
       description: 'A .NET-based portal for local communication, billing, and facility reservations.',
       technologies: ['ASP.NET', 'C#', 'MySQL'],
       image: GoldenHaven,
-      demoLink: '#',
       sourceLink: 'https://github.com/dianesophia/Homeowner-App',
       features: [
         'Enables residents to receive local announcements and respond to polls.',
@@ -57,7 +56,6 @@ const Projects = () => {
       description: 'ML-based recipe recommender that provides nutrition facts tailored to dietary needs.',
       technologies: ['React Native', 'Python', 'Flask API', 'Firebase'],
       image: Cooktrition,
-      demoLink: '#',
       sourceLink: 'https://github.com/dianesophia/React_Native_Cooktrition_Facts',
       features: [
         'Recommends recipes based on a trained machine learning model.',
@@ -70,76 +68,77 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-900">
-      <div className="container mx-auto px-20">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-700 dark:from-yellow-400 dark:via-yellow-300 dark:to-yellow-500 bg-clip-text text-transparent">
+    <section id="projects" className="py-20 bg-gradient-to-b from-white to-yellow-50 dark:from-gray-900 dark:to-gray-800">
+      <div className="container mx-auto px-6 md:px-16">
+        <div className="text-center mb-14">
+          <h2 className="text-4xl font-extrabold mb-3 bg-gradient-to-r from-yellow-600 via-yellow-500 to-yellow-700 dark:from-yellow-400 dark:via-yellow-300 dark:to-yellow-500 bg-clip-text text-transparent">
             Featured Projects
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light">
-            A collection of my recent work, showcasing my passion for building innovative solutions.
+          <p className="text-gray-600 dark:text-gray-400 font-light max-w-2xl mx-auto">
+            A collection of my recent projects demonstrating my skills in building impactful and innovative solutions.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <div
               key={project.title}
-              className="group bg-white dark:bg-gray-800 rounded-3xl overflow-hidden shadow-lg border border-yellow-100/80 dark:border-yellow-700/20 transform transition-all duration-500 hover:scale-[1.015]"
+              className="relative rounded-2xl overflow-hidden bg-white dark:bg-gray-800 shadow-md border-l-4 border-yellow-500 hover:shadow-xl transition"
             >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-56 object-cover rounded-t-3xl transform transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-
+              <img
+                src={project.image}
+                alt={project.title}
+                className="w-full h-52 object-cover"
+              />
               <div className="p-6 flex flex-col">
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm font-light mb-4">
-                  {project.description}
-                </p>
-
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{project.title}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-yellow-100 dark:bg-yellow-900/50 text-yellow-700 dark:text-yellow-400 rounded-full text-xs font-medium"
+                      className="px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 dark:bg-yellow-900/50 dark:text-yellow-300 text-xs font-medium"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-
                 <button
                   onClick={() =>
                     setExpandedProject(expandedProject === index ? null : index)
                   }
-                  className="text-sm text-yellow-600 dark:text-yellow-400 font-medium underline hover:no-underline mb-4 text-left"
+                  className="text-xs font-semibold text-yellow-600 dark:text-yellow-400 mb-4 hover:underline self-start"
                 >
                   {expandedProject === index ? 'Hide Features' : 'Show Features'}
                 </button>
-
-                {expandedProject === index && (
-                  <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300 mb-4">
+                <div
+                  className={`transition-max-height duration-500 overflow-hidden ${
+                    expandedProject === index ? 'max-h-96' : 'max-h-0'
+                  }`}
+                >
+                  <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300 mb-4 mt-2">
                     {project.features.map((feature, i) => (
                       <li key={i} className="flex items-start">
-                        <span className="w-1.5 h-1.5 bg-yellow-500 rounded-full mt-2 mr-2"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-yellow-500 mt-2 mr-2 shrink-0"></span>
                         {feature}
                       </li>
                     ))}
                   </ul>
-                )}
-
-                <div className="flex gap-4 justify-center mt-auto">
+                </div>
+                <div className="flex gap-4 mt-auto">
+                  {project.demoLink && (
+                    <a
+                      href={project.demoLink}
+                      className="px-4 py-2 border border-yellow-500 text-yellow-600 dark:text-yellow-400 rounded-full hover:bg-yellow-500 hover:text-white transition"
+                    >
+                      Live Demo
+                    </a>
+                  )}
                   <a
                     href={project.sourceLink}
-                    className="px-6 py-2 rounded-full border-2 border-yellow-500 text-yellow-600 dark:text-yellow-400 font-semibold hover:bg-yellow-500 hover:text-white transition duration-300 transform hover:scale-105"
+                    className="px-4 py-2 border border-yellow-500 text-yellow-600 dark:text-yellow-400 rounded-full hover:bg-yellow-500 hover:text-white transition"
                   >
-                    Source Code
+                    Source
                   </a>
                 </div>
               </div>
