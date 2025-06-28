@@ -53,7 +53,7 @@ const About = () => {
                 LinkedIn
               </a>
               <a
-                href="/Fuentes - Resume.pdf"
+                href="/Diane Sophia Fuentes - Resume.pdf"
                 download
                 className="flex items-center text-yellow-600 hover:text-yellow-700 text-lg font-medium"
               >
