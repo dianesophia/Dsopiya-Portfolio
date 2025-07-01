@@ -1,42 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+import Swal from 'sweetalert2';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    from_name: '',
-    from_email: '',
-    message: '',
-  });
+  const form = useRef();
 
   const [focusedField, setFocusedField] = useState(null);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
-  };
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    const formDataObj = new FormData(event.target);
-
-    formDataObj.append("access_key", "81ec058d-e00e-4f8f-8814-8a6f0344dba1");
-
-    const object = Object.fromEntries(formDataObj);
-    const json = JSON.stringify(object);
-
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: json
-    }).then((res) => res.json());
-
-    if (res.success) {
-      console.log("Success", res);
-    }
+    emailjs
+      .sendForm('service_qjv7hun', 'template_vh01sms', form.current, {
+        publicKey: 'a5qj9L1MHqBixsbuL',
+      })
+      .then(
+        () => {
+          Swal.fire({
+            title: "Message Sent!",
+            text: "Thank you for reaching out. I'll get back to you soon.",
+            icon: "success"
+          });
+          form.current.reset();
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+          Swal.fire({
+            title: "Error",
+            text: "Message failed to send. Please try again later.",
+            icon: "error"
+          });
+        }
+      );
   };
 
   return (
@@ -87,35 +82,26 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-yellow-200/20 dark:border-gray-700/20n">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-yellow-200/20 dark:border-gray-700/20">
               <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">
                 Connect on Social
               </h3>
               <div className="flex space-x-4">
-                {/* Instagram */}
                 <a href="https://www.instagram.com/dianesophiaaa/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-yellow-100 dark:bg-yellow-900/50 flex items-center justify-center hover:bg-yellow-200 dark:hover:bg-yellow-800/50 transition-colors duration-300">
-                  <svg className="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm5.25.75a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                  </svg>
+                  Instagram
                 </a>
-                {/* Facebook */}
                 <a href="https://www.facebook.com/dianesophiaGF" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-yellow-100 dark:bg-yellow-900/50 flex items-center justify-center hover:bg-yellow-200 dark:hover:bg-yellow-800/50 transition-colors duration-300">
-                  <svg className="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M22 12c0-5.522-4.477-10-10-10S2 6.478 2 12c0 4.991 3.657 9.128 8.438 9.877v-6.987h-2.54v-2.89h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.242 0-1.632.771-1.632 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.128 22 16.991 22 12"/>
-                  </svg>
+                  Facebook
                 </a>
-                {/* LinkedIn */}
                 <a href="https://www.linkedin.com/in/diane-sophia-fuentes-2913b6232/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-full bg-yellow-100 dark:bg-yellow-900/50 flex items-center justify-center hover:bg-yellow-200 dark:hover:bg-yellow-800/50 transition-colors duration-300">
-                  <svg className="w-6 h-6 text-yellow-600 dark:text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.28c-.966 0-1.75-.79-1.75-1.76s.784-1.76 1.75-1.76 1.75.79 1.75 1.76-.784 1.76-1.75 1.76zm13.5 11.28h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-10h2.89v1.36h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.61z"/>
-                  </svg>
+                  LinkedIn
                 </a>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <form onSubmit={onSubmit} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-yellow-200/20 dark:border-gray-700/20 flex-1">
+          <form ref={form} onSubmit={sendEmail} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-yellow-200/20 dark:border-gray-700/20 flex-1">
             <div className="space-y-6">
               <div className="relative">
                 <label htmlFor="from_name" className={`block text-sm font-medium mb-2 ${focusedField === 'name' ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-700 dark:text-gray-300'}`}>
@@ -123,9 +109,9 @@ const Contact = () => {
                 </label>
                 <input
                   type="text"
+                  name="from_name"
                   id="from_name"
-                  value={formData.from_name}
-                  onChange={handleChange}
+                  required
                   onFocus={() => setFocusedField('name')}
                   onBlur={() => setFocusedField(null)}
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-500"
@@ -139,9 +125,9 @@ const Contact = () => {
                 </label>
                 <input
                   type="email"
+                  name="from_email"
                   id="from_email"
-                  value={formData.from_email}
-                  onChange={handleChange}
+                  required
                   onFocus={() => setFocusedField('email')}
                   onBlur={() => setFocusedField(null)}
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-500"
@@ -155,11 +141,11 @@ const Contact = () => {
                 </label>
                 <textarea
                   id="message"
-                  value={formData.message}
-                  onChange={handleChange}
+                  name="message"
+                  rows="4"
+                  required
                   onFocus={() => setFocusedField('message')}
                   onBlur={() => setFocusedField(null)}
-                  rows="4"
                   className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-yellow-500 resize-none"
                   placeholder="Your message"
                 ></textarea>
