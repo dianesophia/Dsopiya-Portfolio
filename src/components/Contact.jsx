@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,36 +8,35 @@ const Contact = () => {
   });
 
   const [focusedField, setFocusedField] = useState(null);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  
-    try {
-      const response = await fetch('http://localhost:5000/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-  
-      if (response.ok) {
-        alert('Message sent successfully!');
-        setFormData({ from_name: '', from_email: '', message: '' });
-      } else {
-        alert('Failed to send message. Please try again.');
-      }
-    } catch (error) {
-      console.error('Resend send error:', error);
-      alert('Failed to send message. Please try again.');
-    }
-  };
-  
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
+  };
+
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    const formDataObj = new FormData(event.target);
+
+    formDataObj.append("access_key", "81ec058d-e00e-4f8f-8814-8a6f0344dba1");
+
+    const object = Object.fromEntries(formDataObj);
+    const json = JSON.stringify(object);
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: json
+    }).then((res) => res.json());
+
+    if (res.success) {
+      console.log("Success", res);
+    }
   };
 
   return (
@@ -53,9 +51,9 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-8">
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className="space-y-8 flex flex-col flex-1">
             <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-yellow-200/20 dark:border-gray-700/20 transform transition-all duration-300 hover:scale-[1.02]">
               <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">
                 Get in Touch
@@ -89,7 +87,7 @@ const Contact = () => {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-yellow-200/20 dark:border-gray-700/20">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-yellow-200/20 dark:border-gray-700/20n">
               <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">
                 Connect on Social
               </h3>
@@ -117,7 +115,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-yellow-200/20 dark:border-gray-700/20">
+          <form onSubmit={onSubmit} className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-xl border border-yellow-200/20 dark:border-gray-700/20 flex-1">
             <div className="space-y-6">
               <div className="relative">
                 <label htmlFor="from_name" className={`block text-sm font-medium mb-2 ${focusedField === 'name' ? 'text-yellow-600 dark:text-yellow-400' : 'text-gray-700 dark:text-gray-300'}`}>
