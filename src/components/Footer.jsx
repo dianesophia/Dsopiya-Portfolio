@@ -61,7 +61,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-yellow-50 dark:bg-gray-950 border-t border-yellow-100/30 dark:border-yellow-700/20">
+    <footer className="bg-yellow-50 dark:bg-gray-950 border-t border-yellow-100/30 dark:border-yellow-700/20 pb-10">
       <div className="container mx-auto px-20 py-10 flex flex-col md:flex-row items-center justify-between gap-8">
         {/* Left: About & Social */}
         <div className="flex flex-col items-center md:items-start gap-4">

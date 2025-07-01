@@ -17,7 +17,7 @@
     ]
   ];
 
-  const Hero = () => {
+  const Home = () => {
     const [groupIndex, setGroupIndex] = useState(0);
 
     useEffect(() => {
@@ -121,4 +121,4 @@
     );
   };
 
-  export default Hero;
+  export default Home;
